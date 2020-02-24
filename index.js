@@ -12,7 +12,7 @@ async function run() {
 
 
     // retrieve each commit message, and format it
-    let pr_commits = pr_commits.reduce((acc, item) => {
+    let pr_messages = pr_commits.reduce((acc, item) => {
 
         // remove leading whitespace "*" and "-"
         let message = item.commit.message.replace(/^[\s*-]+/, '')
@@ -31,5 +31,5 @@ async function run() {
         return acc;
     }, []);
 
-    core.setOutput('messages', pr_commits.join('\n'));
+    core.setOutput('messages', pr_messages.join('\n'));
 }
