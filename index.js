@@ -10,7 +10,6 @@ async function run() {
     // get the commits for the pr
     let pr_commits = (await axios.get(`https://api.github.com/repos/${repo}/pulls/${pr_id}/commits`)).data;
 
-
     // retrieve each commit message, and format it
     let pr_messages = pr_commits.reduce((acc, item) => {
 
