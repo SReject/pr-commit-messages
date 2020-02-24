@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: merged
-        uses: SReject/pr-commit-messages@v1.0.0
+        uses: SReject/pr-commit-messages@v1.0.1
         with:
           sha: 31071ffde14c52f5cf90beeb29a24b5812a706f0
 
