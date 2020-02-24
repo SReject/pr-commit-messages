@@ -1,0 +1,15 @@
+name: Action test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get merge commit messages
+        id: messages
+        uses: SReject/pr-commit-messages@v0.0.1
+        with:
+          sha: 31071ffde14c52f5cf90beeb29a24b5812a706f0
+        
+      - run: echo "${{ steps.messages.outputs.messages }}"
