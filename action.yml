@@ -1,0 +1,16 @@
+name: 'Pull Request Commit Messages'
+description: 'Retrieves commit messages associated with a merged pull request'
+author: 'SReject'
+inputs:
+  sha:
+    description: 'Merged commit sha'
+    required: true
+
+outputs:
+  messages:
+    description:
+      'A line-feed delimited list of commit messages; each prefixed with \'-\''
+
+runs:
+  using: 'node12'
+  main: 'index.js'
