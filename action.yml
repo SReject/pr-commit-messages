@@ -8,7 +8,7 @@ inputs:
 
 outputs:
   messages:
-    description: 'A line-feed delimited list of commit messages; each prefixed with \'-\''
+    description: "A line-feed delimited list of commit messages; each prefixed with '- '"
 
 runs:
   using: 'node12'
