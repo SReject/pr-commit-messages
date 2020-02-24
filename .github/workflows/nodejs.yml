@@ -12,4 +12,4 @@ jobs:
         with:
           sha: 31071ffde14c52f5cf90beeb29a24b5812a706f0
         
-      - run: echo ${{ steps.messages.outputs.messages }}
+      - run: echo "${{ steps.messages.outputs.messages }}"
