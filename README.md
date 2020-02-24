@@ -7,7 +7,7 @@ action: Example
 
 on: push
 
-jobs
+jobs:
   example:
     runs-on: ubuntu-latest
     steps:
