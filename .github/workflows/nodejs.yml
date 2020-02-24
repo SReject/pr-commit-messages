@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Get merge commit messages
         id: messages
-        uses: SReject/pr-commit-messages@v0.0.1
+        uses: SReject/pr-commit-messages@v0.0.2
         with:
           sha: 31071ffde14c52f5cf90beeb29a24b5812a706f0
         
