@@ -5,10 +5,12 @@ async function run() {
     let sha = core.getInput('sha', {required: true});
 
     // get the pr number for the merged commit
-    let pr_id = (await axios.get(`https://api.github.com/search/issues?q=${sha}+type:pr+state:closed+is:merged+repo:${repo}`)).data.items[0].number;
+    let pr = (await axios.get(`https://api.github.com/search/issues?q=${sha}+type:pr+state:closed+is:merged`)).data.items[0];
+    let pr_id = pr.number;
+    let repo = pr.repository_url
 
     // get the commits for the pr
-    let pr_commits = (await axios.get(`https://api.github.com/repos/${repo}/pulls/${pr_id}/commits`)).data;
+    let pr_commits = (await axios.get(`${repo}/pulls/${pr_id}/commits`)).data;
 
     // retrieve each commit message, and format it
     let pr_messages = pr_commits.reduce((acc, item) => {
@@ -33,4 +35,6 @@ async function run() {
     core.setOutput('messages', pr_messages.join('\n'));
 }
 
-run();
+run().catch(err => {
+    core.setFailed(err.message);
+});
