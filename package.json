@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/SReject/pr-commit-messages#readme",
   "dependencies": {
-    "@actions/core": "^1.2.2",
+    "@actions/core": "^1.2.6",
     "axios": "^0.19.2"
   }
 }
