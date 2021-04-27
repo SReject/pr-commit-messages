@@ -2,7 +2,7 @@
   "name": "pr-commit-messages",
   "version": "1.0.0",
   "description": "Retrieves pr commit messages for a given commit sha",
-  "main": "dist/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SReject/pr-commit-messages.git"
