@@ -35,6 +35,8 @@ async function run() {
         }, []);
 
         core.setOutput('messages', pr_messages.join('\n'));
+    } else {
+        core.setOutput('messages', '');
     }
 }
 
