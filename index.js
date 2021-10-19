@@ -6,33 +6,36 @@ async function run() {
 
     // get the pr number for the merged commit
     let pr = (await axios.get(`https://api.github.com/search/issues?q=${sha}+type:pr+state:closed+is:merged`)).data.items[0];
-    let pr_id = pr.number;
-    let repo = pr.repository_url
 
-    // get the commits for the pr
-    let pr_commits = (await axios.get(`${repo}/pulls/${pr_id}/commits`)).data;
+    if (pr != null) {
+        let pr_id = pr.number;
+        let repo = pr.repository_url
 
-    // retrieve each commit message, and format it
-    let pr_messages = pr_commits.reduce((acc, item) => {
+        // get the commits for the pr
+        let pr_commits = (await axios.get(`${repo}/pulls/${pr_id}/commits`)).data;
 
-        // remove leading whitespace "*" and "-"
-        let message = item.commit.message.replace(/^[\s*-]+/, '')
+        // retrieve each commit message, and format it
+        let pr_messages = pr_commits.reduce((acc, item) => {
 
-            // retrieve first line of text
-            .split(/[\r\n]/)[0];
+            // remove leading whitespace "*" and "-"
+            let message = item.commit.message.replace(/^[\s*-]+/, '')
 
-        // if the message did not end up being empty:
-        //  - Prefix the message with "- "
-        //  - Add it to the accumulated messages
-        if (message != null && message !== '') {
-            acc.push('- ' + message);
-        }
+                // retrieve first line of text
+                .split(/[\r\n]/)[0];
 
-        // return the accumulated messages
-        return acc;
-    }, []);
+            // if the message did not end up being empty:
+            //  - Prefix the message with "- "
+            //  - Add it to the accumulated messages
+            if (message != null && message !== '') {
+                acc.push('- ' + message);
+            }
 
-    core.setOutput('messages', pr_messages.join('\n'));
+            // return the accumulated messages
+            return acc;
+        }, []);
+
+        core.setOutput('messages', pr_messages.join('\n'));
+    }
 }
 
 run().catch(err => {
