@@ -3,6 +3,9 @@
   "version": "1.0.2",
   "description": "Retrieves pr commit messages for a given commit sha",
   "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build index.js -o dist -m"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SReject/pr-commit-messages.git"
